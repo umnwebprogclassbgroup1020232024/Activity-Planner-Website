@@ -1,30 +1,37 @@
 <?php
-    if(!empty($_POST['username']) && !empty($_POST['password'])){
+if (!empty($_POST['username']) && !empty($_POST['password'])) {
+    $username = $_POST['username'];
+    $password = $_POST['password'];
 
-        $username = $_POST['username'];
-        $password = $_POST['password'];
+    include "connection.php";
 
-        include "connection.php";
+    $query1 = "SELECT * FROM users WHERE username = :username";
+    $stmt = $conn->prepare($query1);
 
-        $query1 = "SELECT * FROM users WHERE username='".$username."'";
-        $stmt = $conn->query($query1);
-        $result = $stmt->fetch();
-        
-        if(!empty($result)){
-             
-            if($result['username']==$username){
-                
-                die("<center><br><h1 style='color: blue;'>Error:  Account already exist...! <h1/><h2 style='color: blue;'>please try creating account with another username.</h2><br><a href='signup.php'><button style='background-color: blue;border-radius: 20px; width: 80px; height: 30px'>Sign-up</button></a></center>");
-            }
+    $stmt->bindParam(':username', $username, PDO::PARAM_STR);
+
+    $stmt->execute();
+
+    $result = $stmt->fetch(PDO::FETCH_ASSOC);
+
+    if (!empty($result)) {
+        if ($result['username'] === $username) {
+            die("<center><br><h1 style='color: blue;'>Error: Account already exists...! <h1/><h2 style='color: blue;'>Please try creating an account with another username.</h2><br><a href='signup.php'><button style='background-color: blue;border-radius: 20px; width: 80px; height: 30px'>Sign-up</button></a></center>");
         }
-        else{
-            $insertQuery = "INSERT INTO users(username, password) VALUES('".$username."','".$password."')";
-            $conn->query($insertQuery);   
-            echo "<center><h1 style='color: blue;'>Account Created Successfully...!</h1></center>" ;
-        }
+    } else {
+        $insertQuery = "INSERT INTO users (username, password) VALUES (:username, :password)";
+        $stmt = $conn->prepare($insertQuery);
+
+        $stmt->bindParam(':username', $username, PDO::PARAM_STR);
+        $stmt->bindParam(':password', $password, PDO::PARAM_STR);
+
+        $stmt->execute();
+
+        echo "<center><h1 style='color: blue;'>Account Created Successfully...!</h1></center>";
     }
-
+}
 ?>
+
 
 <!DOCTYPE html>
 <html lang="en">

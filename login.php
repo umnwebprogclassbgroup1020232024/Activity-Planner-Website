@@ -51,4 +51,7 @@ if (!empty($_POST['username']) && !empty($_POST['password'])) {
         <input type="submit" id="btn" value="Login">
     </form>
     </div>
+    <div style="margin: 15px; padding: 15px;">
+        <a href="signup.php">No Account? Register Here!</a>
+    </div>
 </body>

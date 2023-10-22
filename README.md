@@ -9,10 +9,10 @@ Features:
 5. Functional CRUD
 
 <div align="justify">
-### Fitur yang harus dikerjakan:  
+## Fitur yang harus dikerjakan:  
 <ul>
  <li>Navbar</li>
- <li>Update. Karena ini cuman CRD doang ya ges ya</li>
- <li>Sama backend, yaudah itu aja sih.</li>
+ <li>CRUD 90% tinggal yang tanggal aja sih</li>li>
+ <li>Sama dirapihin codenya, yaudah itu aja sih.</li>
 </ul>
 </div>

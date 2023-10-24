@@ -229,12 +229,10 @@ if (!empty($_SESSION['globalUser']) && !empty($_SESSION['globalPswd'])) {
                 ?>
                 </tbody>
         </table>
-        <?php echo '<div class="alert alert-primary">TASK COUNT: ' . $i - 1 . '</div>'; ?>
     </div>
     </div>
         </tbody>
     </table>
-
     <!-- JQuery Script for Updating and Deleting Tasks -->
     <script>
     $(document).ready(function() {

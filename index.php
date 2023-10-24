@@ -54,7 +54,7 @@ if (!empty($_SESSION['globalUser']) && !empty($_SESSION['globalPswd'])) {
             <div class="modal-body text-center">
                 <p>Hello, <?php echo $username; ?>! Do you want to logout?</p>
             </div>
-            <div class="modal-footer text-center">
+            <div class="modal-footer text-center justify-content-center">
                 <div class="d-flex justify-content-center">
                     <button type="button" class="btn btn-secondary" data-dismiss="modal" onclick="window.location.href='logout.php'">Logout</button>
                 </div>
@@ -76,7 +76,7 @@ if (!empty($_SESSION['globalUser']) && !empty($_SESSION['globalPswd'])) {
         <form method="post" action="index.php">
             <div class="input-group mb-3">
                 <input type="text" name="task" class="form-control" placeholder="Add a task">
-                <div class="input-group-append">
+                <div class="input-group-append mx-4">
                     <button type="submit" class="btn btn-primary" name="submit">Add Task</button>
                 </div>
             </div>
@@ -138,26 +138,28 @@ if (!empty($_SESSION['globalUser']) && !empty($_SESSION['globalPswd'])) {
             } 
         }
     }
-        if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-        // Retrieve POST data
-        $taskId = $_POST['taskid'];
-        $field = $_POST['field'];
-        $newValue = $_POST['newvalue'];
+    
+    // Updating Function Script
+    if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+    // Retrieve POST data
+    $taskId = $_POST['taskid'];
+    $field = $_POST['field'];
+    $newValue = $_POST['newvalue'];
 
-        // Update the task in the database
-        $query = "UPDATE tasks SET $field = :newValue WHERE taskid = :taskId";
-        $stmt = $conn->prepare($query);
-        $stmt->bindParam(':newValue', $newValue, PDO::PARAM_STR);
-        $stmt->bindParam(':taskId', $taskId, PDO::PARAM_INT);
-        $stmt->execute();
-        $result = $stmt->execute();
+    // Update the task in the database
+    $query = "UPDATE tasks SET $field = :newValue WHERE taskid = :taskId";
+    $stmt = $conn->prepare($query);
+    $stmt->bindParam(':newValue', $newValue, PDO::PARAM_STR);
+    $stmt->bindParam(':taskId', $taskId, PDO::PARAM_INT);
+    $stmt->execute(); // Execute the statement once
+    $result = $stmt->rowCount(); // Check the number of affected rows if needed
 
-        if ($result) {
-            echo "Task updated successfully";
-        } else {
-            echo "Error updating task";
-        }
+    if ($result) {
+        echo "Task updated successfully";
+    } else {
+        echo "Error updating task";
     }
+}
     ?>
 
     <div class="table-responsive">
@@ -211,14 +213,15 @@ if (!empty($_SESSION['globalUser']) && !empty($_SESSION['globalPswd'])) {
                             $i++;
                         }
                     } else {
-                        echo 'No tasks found for the user.';
+                        echo "<p class='text-center my-2'><strong>No tasks found for the user " . $username .".</strong></p>";
                     }
                 } catch (PDOException $e) {
                     echo "Database Error: " . $e->getMessage();
-                }
+                }                         
                 ?>
                 </tbody>
         </table>
+        <?php echo '<div class="alert alert-primary">TASK COUNT: ' . $i - 1 . '</div>'; ?>
     </div>
     </div>
         </tbody>
@@ -238,8 +241,13 @@ if (!empty($_SESSION['globalUser']) && !empty($_SESSION['globalPswd'])) {
             $input.focus();
             $input.blur(function() {
                 var newValue = $input.val();
-                $cell.text(newValue);
-                updateTask($cell.data('taskid'), 'task', newValue);
+                if (newValue !== currentValue) {
+                    $cell.text(newValue);
+                    updateTask($cell.data('taskid'), 'task', newValue);
+                } else {
+                    alert("Task not updated, same values!");
+                    $cell.text(currentValue);
+                }
             });
         });
 
@@ -258,17 +266,20 @@ if (!empty($_SESSION['globalUser']) && !empty($_SESSION['globalPswd'])) {
 
         });
 
+
         // Click event for due date cell
         $('.duedate').click(function() {
             var $cell = $(this);
             var currentDueDate = $cell.text();
             var newDueDate = prompt('Enter a new due date (YYYY-MM-DD HH:MM):', currentDueDate);
+
             if (newDueDate !== null) {
-                if (isValidDatetime(newDueDate)) {
-                    $cell.text(newDueDate); // Update the cell with the newDueDate
-                    updateTask($cell.data('taskid'), 'duedate', newDueDate); // Update the task with newDueDate
+                if (newDueDate !== currentDueDate) {
+                    $cell.text(newDueDate);
+                    updateTask($cell.data('taskid'), 'duedate', newDueDate);
                 } else {
-                    alert('Invalid datetime format. Please use YYYY-MM-DD HH:MM.');
+                    alert("Task not updated, same values!");
+                    updateTask($cell.data('taskid'), 'duedate', currentDueDate);
                 }
             }
         });

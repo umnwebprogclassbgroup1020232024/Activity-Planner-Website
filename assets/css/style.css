@@ -1,0 +1,35 @@
+.card-custom {
+  background: rgba(255, 255, 255, 0.2);
+  border-radius: 16px;
+  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+  backdrop-filter: blur(5px);
+  -webkit-backdrop-filter: blur(5px);
+  border: 1px solid rgba(255, 255, 255, 0.3);
+}
+
+.navbar-custom {
+  background: rgba(250, 154, 240, 0.34);
+  border-radius: 36px;
+  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+  backdrop-filter: blur(5px);
+  -webkit-backdrop-filter: blur(8.5px);
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  height: 70px;
+}
+
+#sakura {
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: -1;
+  /* Menempatkan elemen di bawah konten lain */
+}
+
+canvas {
+  padding: 0;
+  margin: 0;
+}
+
+h5 {
+  color: azure;
+}/*# sourceMappingURL=style.css.map */

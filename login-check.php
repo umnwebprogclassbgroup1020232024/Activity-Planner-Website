@@ -1,7 +1,7 @@
 <?php
 
     if(empty($_POST['username']) && empty($_POST['password'])){
-        echo("<center><br><h1 style='color: blue;'>Error: You haven't logged in yet...! </h1><h2 style='color: blue;'>Head to the login page!</h2>");
+        echo("<center><br><h1 style='color: blue;'>You haven't logged in yet...! </h1><h2 style='color: blue;'>Head to the login page!</h2>");
         die("<center><br><a href='login.php'>Login here!</a>");
     }
     else{
@@ -35,5 +35,3 @@
             }
         }
     }
-
-?>

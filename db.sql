@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Oct 21, 2023 at 06:33 AM
+-- Generation Time: Oct 23, 2023 at 01:35 AM
 -- Server version: 10.4.28-MariaDB
 -- PHP Version: 8.2.4
 
@@ -36,12 +36,13 @@ CREATE TABLE `tasks` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
--- Dumping data for table `tasks`
--- OPTIONAL
+-- Dumping data for table `tasks` OPTIONAL
+--
 
 INSERT INTO `tasks` (`taskid`, `task`, `duedate`, `progress_status`, `userid`) VALUES
 (1, 'Make Music', '2023-10-10 11:06:31', 'NYS', 2),
-(2, 'Cook Food', NULL, 'NYS', 2);
+(2, 'Cook Food', NULL, 'NYS', 2),
+(32, 'Lik Zilly', '0666-06-06 06:06:59', 'NYS', 1);
 
 -- --------------------------------------------------------
 
@@ -52,16 +53,16 @@ INSERT INTO `tasks` (`taskid`, `task`, `duedate`, `progress_status`, `userid`) V
 CREATE TABLE `users` (
   `userid` int(11) NOT NULL,
   `username` varchar(32) DEFAULT NULL,
-  `password` varchar(50) DEFAULT NULL
+  `password` varchar(42) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
--- Dumping data for table `users`
--- INI MAH GAK USAH SEBENERNYA
+-- Dumping data for table `users` (OPTIONAL, NOT RECOMMENDED)
+--
 
 INSERT INTO `users` (`userid`, `username`, `password`) VALUES
-(1, 'malik', 'malikboomin'),
-(2, 'jahseh', 'jahsehkosasih123');
+(1, 'malik', '*1B76BD1547DB422E580CE367BDBB03E9BA4E0ABE'),
+(2, 'jahseh', '*32D98F17DFE2A438AA456C057A2736E5E995AD58');
 
 --
 -- Indexes for dumped tables
@@ -89,13 +90,13 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT for table `tasks`
 --
 ALTER TABLE `tasks`
-  MODIFY `taskid` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
+  MODIFY `taskid` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `userid` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `userid` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- Constraints for dumped tables

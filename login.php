@@ -40,15 +40,37 @@ if (!empty($_POST['username']) && !empty($_POST['password'])) {
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Login</title>
-    <link rel="stylesheet" href="style.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
 </head>
 <body align="center">
-    <div id="border">
-    <h1>Login</h1><br>
-    <form action="login-check.php" method="POST">
-    <label>Username: </label><input name="username" type="text"><br><br>
-        <label>Password: </label><input name="password" type="password"><br><br>
-        <input type="submit" id="btn" value="Login">
-    </form>
+    <div class="container mt-5">
+        <div class="row justify-content-center">
+            <div class="col-md-6">
+                <div class="card">
+                    <div class="card-header">
+                        <h1 class="text-center">Login</h1>
+                    </div>
+                    <div class="card-body">
+                        <form action="login-check.php" method="POST">
+                            <div class="form-group">
+                                <label for="username">Username</label>
+                                <input type="text" class="form-control" name="username">
+                            </div>
+                            <div class="form-group">
+                                <label for="password">Password</label>
+                                <input type="password" class="form-control" name="password">
+                            </div>
+                            <div class="text-center">
+                                <button type="submit" class="btn btn-primary mt-4">Login</button>
+                            </div>
+                        </form>
+                    </div>
+                    <div class="text-center my-4 card-footer">
+                        <a href="signup.php" style="color: black;">No Account? Register Here!</a>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
 </body>
+

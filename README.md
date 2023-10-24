@@ -7,11 +7,3 @@ Features:
 3. Mark as Done
 4. Tasklist
 5. Functional CRUD
-
-<div align="justify">
-Fitur yang harus dikerjakan:  
-<ul>
- <li>UPDATE kek TAI woi, gak mau post mulu.</li>
- <li>Sama dirapihin codenya, yaudah itu aja sih.</li>
-</ul>
-</div>

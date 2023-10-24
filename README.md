@@ -11,8 +11,7 @@ Features:
 <div align="justify">
 Fitur yang harus dikerjakan:  
 <ul>
- <li>Navbar</li>
- <li>CRUD 90% tinggal yang tanggal aja sih</li>
+ <li>UPDATE kek TAI woi, gak mau post mulu.</li>
  <li>Sama dirapihin codenya, yaudah itu aja sih.</li>
 </ul>
 </div>

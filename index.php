@@ -211,19 +211,23 @@ if (!empty($_SESSION['globalUser']) && !empty($_SESSION['globalPswd'])) {
                             $i++;
                         }
                     } else {
-                        echo 'No tasks found for the user.';
+                        echo "<p class='text-center my-2'><strong>No tasks found for the user " . $username .".</strong></p>";
                     }
                 } catch (PDOException $e) {
                     echo "Database Error: " . $e->getMessage();
-                }
+                }                         
                 ?>
                 </tbody>
         </table>
+        <?php echo '<div class="alert alert-primary">TASK COUNT: ' . $i - 1 . '</div>'; ?>
     </div>
     </div>
         </tbody>
     </table>
-
+    </div>
+    </div>
+        </tbody>
+    </table>
     <!-- JQuery Script for Updating and Deleting Tasks -->
     <script>
     $(document).ready(function() {
